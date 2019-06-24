@@ -1,0 +1,10 @@
+{
+    "it": {
+        "home" : "Home",
+        "self": "Profilo",
+        "city": "Vai in giro",
+        "house": "Casa",
+        "social": "Social",
+        "work": "Lavoro"
+    }
+}
