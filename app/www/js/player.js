@@ -5,7 +5,7 @@ class Player {
 		this.money = 1000
 		this.work = 'Unemployed'
 		this.skills = {}
-		this.self = {}
+		this.personality = {}
 
 		Game.prototype.setPage('createPlayer')
 		this.setEvents()
@@ -16,28 +16,43 @@ class Player {
 		document.getElementById("money").innerHTML = this.money
 	}
 
-	addName(name) {
-		this.name = name
-	}
-
 	createPersonality() {
-		/* question */
-		this.addName(document.getElementById('playerName').value)
-		this.self.introvert = 5
-		this.self.social = 2
-		this.self.ambitious = 3
-		this.self.creative = 8
-		this.self.diabolical = 1
-		this.self.kind = 6
-		this.self.lazy = 4
+		if((document.getElementById('playerName').value != '')&&(this.totalPointsPersonality < 36)) {
+			this.name = document.getElementById('playerName').value
+			this.personality.introvert = parseInt(document.querySelector('input[name="introvert"]').value)
+			this.personality.social = parseInt(document.querySelector('input[name="social"]').value)
+			this.personality.ambitious = parseInt(document.querySelector('input[name="ambitious"]').value)
+			this.personality.creative = parseInt(document.querySelector('input[name="creative"]').value)
+			this.personality.diabolical = parseInt(document.querySelector('input[name="diabolical"]').value)
+			this.personality.kind = parseInt(document.querySelector('input[name="kind"]').value)
+			this.personality.lazy = parseInt(document.querySelector('input[name="lazy"]').value)
+		} else {
+			//popup error
+		}
 	}
 
 	setEvents() {
+		this.totalPointsPersonality = 35
+
 		document.addEventListener('changePage', (e)=> {
 			if(e.detail == 'createPlayer') {
+				var ranges = document.querySelectorAll('.personality input')
+
 				document.getElementById('savePlayer').addEventListener('click', () => {
 					this.createPersonality()
 				})
+
+				;[...ranges].forEach((el)=>{
+					el.addEventListener('change', (e)=> {
+						this.totalPointsPersonality = 0
+						;[...ranges].forEach((el)=>{
+							this.totalPointsPersonality += parseInt(el.value)
+						})
+						document.querySelector('.personality .points').innerHTML = this.totalPointsPersonality
+					})
+				})
+
+
 			}
 		})
 	}
