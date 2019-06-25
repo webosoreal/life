@@ -1,21 +1,21 @@
 import Game from '../js/game.js'
 
 class GameList {
-    constructor() {
-        this.games = [] // fetch games from server
+	constructor() {
+		this.games = [] // fetch games from server
 
-        this.setEvents()
-    }
+		this.setEvents()
+	}
 
-    newGame() {
-        this.games[this.games.length] = new Game()
-    }
+	newGame() {
+		this.games[this.games.length] = new Game()
+	}
 
-    setEvents() {
-        document.getElementById('newGame').addEventListener('click', () => {
-            this.newGame()
-        })
-    }
+	setEvents() {
+		document.getElementById('newGame').addEventListener('click', () => {
+			this.newGame()
+		})
+	}
 }
 
 window.gameList = new GameList()
