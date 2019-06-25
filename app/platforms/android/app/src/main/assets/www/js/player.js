@@ -11,6 +11,7 @@ class Player {
 
     addCash(money) {
         this.money += money
+        document.getElementById("money").innerHTML = this.money
     }
 
     addName(name) {
