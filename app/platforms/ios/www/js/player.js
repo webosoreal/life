@@ -19,6 +19,7 @@ class Player {
 
     createPersonality() {
         /* question */
+        this.addName('')
         this.self.introvert = 5
         this.self.social = 2
         this.self.ambitious = 3
