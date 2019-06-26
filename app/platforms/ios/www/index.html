@@ -1,40 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Life</title>
-    </head>
-    <body>
-        <div class="app">
-            <ul class="header">
-                <li id="life">100 life</li>
-                <li id="money">1000 money</li>
-                <li id="date">06/07/2019</li>
-            </ul>
-            <div id="main">
-                <div id="start">
-                    <div class="logo"></div>
-                    <div id="newGame">Start new Life</div>
-                    <div id="loadGame">Load a Life</div>
-                    <div id="options">Options</div>
-                </div>
-            </div>
-            <ul class="footer">
-                <li id="home">Home</li>
-                <li id="self">Me</li>
-                <li id="house">House</li>
-                <li id="work">Work</li>
-                <li id="social">Social</li>
-                <li id="city">City</li>
-            </ul>
-            <button id="nextDay">Next Day</button>
-        </div>
-        <script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-database.js"></script>
+	<head>
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<title>Life</title>
+	</head>
+	<body>
+		<div class="app">
+			<ul class="header">
+				<li id="life">100 life</li>
+				<li id="money">1000 money</li>
+				<li id="date">06/07/2019</li>
+			</ul>
+			<div id="main">
+				<div id="start">
+					<div class="logo"></div>
+					<div class="choiceUser">
+						<div id="createGame">New Life</div>
+						<div href="" id="loadGame">Load Life</div>
+					</div>
 
-        <script type="module" src="js/index.js"></script>
-    </body>
+					<div class="loginGame hidden">
+						<div class="field">
+							<p>Mail</p>
+							<input type="text" name="mail">
+						</div>
+						<div class="field">
+							<p>Password</p>
+							<input type="password" name="password">
+						</div>
+						<button>Login</button>
+					</div>
+
+					<div class="signUp hidden">
+						<div class="field">
+							<p>Mail</p>
+							<input type="text" name="mail">
+						</div>
+						<div class="field">
+							<p>Password</p>
+							<input type="password" name="password">
+						</div>
+						<button>Play Life</button>
+					</div>
+
+					<div id="options">Options</div>
+				</div>
+			</div>
+			<ul class="footer">
+				<li id="home">Home</li>
+				<li id="self">Me</li>
+				<li id="house">House</li>
+				<li id="work">Work</li>
+				<li id="social">Social</li>
+				<li id="city">City</li>
+			</ul>
+			<button id="nextDay">Next Day</button>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-database.js"></script>
+
+		<script type="module" src="js/index.js"></script>
+	</body>
 </html>
