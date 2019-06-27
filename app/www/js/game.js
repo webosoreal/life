@@ -27,9 +27,7 @@ class Game {
 			var date = this.date.toDateString()
 		}
 		document.getElementById("date").innerHTML = date
-		database.ref(this.uid).set({
-			'date' : date
-		})
+		firebase.database().ref(this.uid + '/game/date').set(date)
 	}
 
 	setPage(page, lang) {

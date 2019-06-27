@@ -70,7 +70,7 @@ class GameList {
 	}
 
 	goHome() {
-		Game.setPage('home', this.lang)
+		Game.prototype.setPage('home', this.lang)
 	}
 
 	setEvents() {

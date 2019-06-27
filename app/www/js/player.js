@@ -1,4 +1,6 @@
 import Game from '/js/game.js'
+import Personality from '/js/personality.js'
+
 class Player {
 	constructor (uid) {
 		this.uid = uid
@@ -17,41 +19,10 @@ class Player {
 		document.getElementById("money").innerHTML = this.money
 	}
 
-	createPersonality() {
-		if((document.getElementById('playerName').value != '')&&(this.totalPointsPersonality < 36)) {
-			this.name = document.getElementById('playerName').value
-			this.personality.introvert = parseInt(document.querySelector('input[name="introvert"]').value)
-			this.personality.social = parseInt(document.querySelector('input[name="social"]').value)
-			this.personality.ambitious = parseInt(document.querySelector('input[name="ambitious"]').value)
-			this.personality.creative = parseInt(document.querySelector('input[name="creative"]').value)
-			this.personality.diabolical = parseInt(document.querySelector('input[name="diabolical"]').value)
-			this.personality.kind = parseInt(document.querySelector('input[name="kind"]').value)
-			this.personality.lazy = parseInt(document.querySelector('input[name="lazy"]').value)
-		} else {
-			//popup error
-		}
-	}
-
 	setEvents() {
-		this.totalPointsPersonality = 35
-
 		document.addEventListener('changePage', (e)=> {
 			if(e.detail == 'createPlayer') {
-				var ranges = document.querySelectorAll('.personality input')
-
-				document.getElementById('savePlayer').addEventListener('click', () => {
-					this.createPersonality()
-				})
-
-				;[...ranges].forEach((el)=>{
-					el.addEventListener('change', (e)=> {
-						this.totalPointsPersonality = 0
-						;[...ranges].forEach((el)=>{
-							this.totalPointsPersonality += parseInt(el.value)
-						})
-						document.querySelector('.personality .points').innerHTML = this.totalPointsPersonality
-					})
-				})
+				new Personality()
 			}
 		})
 	}

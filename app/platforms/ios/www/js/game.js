@@ -7,7 +7,7 @@ class Game {
 		this.setEvents()
 		this.newPlayer()
 		this.startGame()
-		this.player = uid
+		this.uid = uid
 	}
 
 	startGame() {
@@ -22,10 +22,12 @@ class Game {
 	nextDay() {
 		this.date.setDate(this.date.getDate() + 1)
 		if(this.lang == 'it') {
-			document.getElementById("date").innerHTML = this.date.toLocaleDateString('it-IT')
+			var date = this.date.toLocaleDateString('it-IT')
 		} else {
-			document.getElementById("date").innerHTML = this.date.toDateString()
+			var date = this.date.toDateString()
 		}
+		document.getElementById("date").innerHTML = date
+		firebase.database().ref(this.uid + '/game/date').set(date)
 	}
 
 	setPage(page, lang) {
