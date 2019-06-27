@@ -3,13 +3,17 @@ import Game from '../js/game.js'
 class GameList {
 	constructor(database) {
 		this.database = database
+		this.tabNew = document.querySelector('.signUp')
+		this.tabLoad = document.querySelector('.loginGame')
+
 		this.setEvents()
 	}
 
 	newGame() {
-		var tabNew = document.querySelector('.signUp')
-		tabNew.classList.remove('hidden')
-		var button = tabNew.querySelector('button')
+		this.tabNew.classList.remove('hidden')
+		this.tabLoad.classList.add('hidden')
+		var button = this.tabNew.querySelector('button')
+		firebase.auth().signOut()
 
 		button.addEventListener('click', ()=> {
 			var mail = document.querySelector('.signUp input[name="mail"]').value
@@ -34,9 +38,9 @@ class GameList {
 	}
 
 	loadGame() {
-		var tabLoad = document.querySelector('.loginGame')
-		tabLoad.classList.remove('hidden')
-		var button = tabLoad.querySelector('button')
+		this.tabLoad.classList.remove('hidden')
+		this.tabNew.classList.add('hidden')
+		var button = this.tabLoad.querySelector('button')
 
 		button.addEventListener('click', ()=> {
 			var mail = document.querySelector('.loginGame input[name="mail"]').value
@@ -50,6 +54,23 @@ class GameList {
 		});
 	}
 
+	redirectUserToGame(res) {
+		let uid = this.uid
+		if(res && res.game == 'started') {
+			console.log('game already started')
+			database.ref(uid + '/game/pullorosi').set({
+				'recolozi' : 'recolozi'
+			})
+		} else {
+			database.ref(uid).set({
+				'game' : 'started'
+			})
+
+			console.log('start game')
+			new Game(uid)
+		}
+	}
+
 	setEvents() {
 		document.getElementById('createGame').addEventListener('click', () => {
 			this.newGame()
@@ -59,33 +80,17 @@ class GameList {
 			this.loadGame()
 		})
 
-		firebase.auth().onAuthStateChanged(function(user) {
+		firebase.auth().onAuthStateChanged((user) => {
+			console.log('user')
+			console.log(user)
 			if(user) {
-				var uid = user.uid
-				var ref = firebase.database().ref(uid);
+				this.uid = user.uid
+				var ref = firebase.database().ref(this.uid);
 
-				ref.on("value", function(snapshot) {
+				ref.once('value').then((snapshot) => {
+					console.log('onValue')
 					var res = snapshot.val()
-					if(res && res.game == 'started') {
-						console.log('game already started')
-
-						database.ref('game').set({
-							'game' : 'started'
-						})
-					} else {
-						database.ref().set({
-							uid : {},
-						});
-
-						database.ref(uid).set({
-							'game' : 'started'
-						})
-
-						console.log('start game')
-						new Game()
-					}
-				}, function (error) {
-					console.log("Error: " + error.code);
+					this.redirectUserToGame(res)
 				});
 			}
 		})
