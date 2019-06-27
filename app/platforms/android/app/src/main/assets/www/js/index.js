@@ -55,6 +55,7 @@ class GameList {
 	}
 
 	redirectUserToGame(res) {
+		console.log(res)
 		let uid = this.uid
 		if(res && res.game == 'started') {
 			console.log('game already started')
@@ -65,7 +66,7 @@ class GameList {
 			})
 
 			console.log('start game')
-			new Game(uid)
+			new Game()
 		}
 	}
 
@@ -83,16 +84,12 @@ class GameList {
 		})
 
 		firebase.auth().onAuthStateChanged((user) => {
-			console.log('user')
-			console.log(user)
 			if(user) {
 				this.uid = user.uid
 				var ref = firebase.database().ref(this.uid);
 
 				ref.once('value').then((snapshot) => {
-					console.log('onValue')
-					var res = snapshot.val()
-					this.redirectUserToGame(res)
+					this.redirectUserToGame(snapshot.val())
 				});
 			}
 		})

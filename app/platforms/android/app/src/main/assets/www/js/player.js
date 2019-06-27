@@ -2,8 +2,8 @@ import Game from '/js/game.js'
 import Personality from '/js/personality.js'
 
 class Player {
-	constructor (uid) {
-		this.uid = uid
+	constructor () {
+		this.uid = firebase.auth().currentUser && firebase.auth().currentUser.uid
 		this.name = 'newPlayer'
 		this.money = 1000
 		this.work = 'Unemployed'

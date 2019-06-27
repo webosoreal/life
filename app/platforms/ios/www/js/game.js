@@ -1,13 +1,14 @@
 import Player from '../js/player.js'
 
 class Game {
-	constructor(uid) {
+	constructor() {
 		this.lang = 'en'
+		this.uid = firebase.auth().currentUser && firebase.auth().currentUser.uid
+
 		this.setPage('home', this.lang)
 		this.setEvents()
 		this.newPlayer()
 		this.startGame()
-		this.uid = uid
 	}
 
 	startGame() {
@@ -16,7 +17,7 @@ class Game {
 	}
 
 	newPlayer () {
-		new Player(this.uid)
+		new Player()
 	}
 
 	nextDay() {
