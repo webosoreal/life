@@ -58,9 +58,7 @@ class GameList {
 		let uid = this.uid
 		if(res && res.game == 'started') {
 			console.log('game already started')
-			database.ref(uid + '/game/pullorosi').set({
-				'recolozi' : 'recolozi'
-			})
+			this.goHome()
 		} else {
 			database.ref(uid).set({
 				'game' : 'started'
@@ -69,6 +67,10 @@ class GameList {
 			console.log('start game')
 			new Game(uid)
 		}
+	}
+
+	goHome() {
+		Game.setPage('home', this.lang)
 	}
 
 	setEvents() {

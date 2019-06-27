@@ -1,13 +1,13 @@
 import Player from '../js/player.js'
 
 class Game {
-	constructor() {
-		this.players = []
+	constructor(uid) {
 		this.lang = 'en'
 		this.setPage('home', this.lang)
 		this.setEvents()
 		this.newPlayer()
 		this.startGame()
+		this.uid = uid
 	}
 
 	startGame() {
@@ -16,16 +16,20 @@ class Game {
 	}
 
 	newPlayer () {
-		this.players[this.players.length] = new Player()
+		new Player(this.uid)
 	}
 
 	nextDay() {
 		this.date.setDate(this.date.getDate() + 1)
 		if(this.lang == 'it') {
-			document.getElementById("date").innerHTML = this.date.toLocaleDateString('it-IT')
+			var date = this.date.toLocaleDateString('it-IT')
 		} else {
-			document.getElementById("date").innerHTML = this.date.toDateString()
+			var date = this.date.toDateString()
 		}
+		document.getElementById("date").innerHTML = date
+		database.ref(this.uid).set({
+			'date' : date
+		})
 	}
 
 	setPage(page, lang) {

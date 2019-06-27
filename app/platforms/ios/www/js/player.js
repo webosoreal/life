@@ -1,6 +1,7 @@
 import Game from '/js/game.js'
 class Player {
-	constructor () {
+	constructor (uid) {
+		this.uid = uid
 		this.name = 'newPlayer'
 		this.money = 1000
 		this.work = 'Unemployed'

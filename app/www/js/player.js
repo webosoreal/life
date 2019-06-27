@@ -52,8 +52,6 @@ class Player {
 						document.querySelector('.personality .points').innerHTML = this.totalPointsPersonality
 					})
 				})
-
-
 			}
 		})
 	}

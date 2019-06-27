@@ -1,13 +1,13 @@
 import Player from '../js/player.js'
 
 class Game {
-	constructor() {
-		this.players = []
+	constructor(uid) {
 		this.lang = 'en'
 		this.setPage('home', this.lang)
 		this.setEvents()
 		this.newPlayer()
 		this.startGame()
+		this.player = uid
 	}
 
 	startGame() {
@@ -16,7 +16,7 @@ class Game {
 	}
 
 	newPlayer () {
-		this.players[this.players.length] = new Player()
+		new Player(this.uid)
 	}
 
 	nextDay() {
