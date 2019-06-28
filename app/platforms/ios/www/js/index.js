@@ -1,4 +1,5 @@
 import Game from '../js/game.js'
+import Day from '../js/day.js'
 
 class GameList {
 	constructor(database) {
@@ -55,23 +56,12 @@ class GameList {
 	}
 
 	redirectUserToGame(res) {
-		console.log(res)
-		let uid = this.uid
-		if(res && res.game == 'started') {
-			console.log('game already started')
-			this.goHome()
+		if(res && res.game && res.game.personality) {
+			console.log('game already started | personality ok')
+			Game.prototype.setPage('home', this.lang)
 		} else {
-			database.ref(uid).set({
-				'game' : 'started'
-			})
-
-			console.log('start game')
 			new Game()
 		}
-	}
-
-	goHome() {
-		Game.prototype.setPage('home', this.lang)
 	}
 
 	setEvents() {
@@ -83,8 +73,12 @@ class GameList {
 			this.loadGame()
 		})
 
+		document.getElementById('nextDay').addEventListener('click', () => {Day.prototype.nextDay()})
+
+
 		firebase.auth().onAuthStateChanged((user) => {
 			if(user) {
+				console.log(user)
 				this.uid = user.uid
 				var ref = firebase.database().ref(this.uid);
 

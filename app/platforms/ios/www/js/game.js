@@ -1,34 +1,20 @@
 import Player from '../js/player.js'
+import Day from '../js/day.js'
 
 class Game {
 	constructor() {
 		this.lang = 'en'
 		this.uid = firebase.auth().currentUser && firebase.auth().currentUser.uid
+		console.log('start game')
 
 		this.setPage('home', this.lang)
 		this.setEvents()
 		this.newPlayer()
-		this.startGame()
-	}
-
-	startGame() {
-		this.date = new Date()
-		this.nextDay()
+		new Day()
 	}
 
 	newPlayer () {
 		new Player()
-	}
-
-	nextDay() {
-		this.date.setDate(this.date.getDate() + 1)
-		if(this.lang == 'it') {
-			var date = this.date.toLocaleDateString('it-IT')
-		} else {
-			var date = this.date.toDateString()
-		}
-		document.getElementById("date").innerHTML = date
-		firebase.database().ref(this.uid + '/game/date').set(date)
 	}
 
 	setPage(page, lang) {
@@ -63,7 +49,6 @@ class Game {
 
 	setEvents() {
 		var pageChanger = document.querySelectorAll('.footer li')
-		var nextDay = document.getElementById('nextDay')
 
 		;[...pageChanger].forEach((el) => {
 			el.addEventListener('click', (e) => {
@@ -72,8 +57,6 @@ class Game {
 				this.setPage(e.target.id, this.lang)
 			})
 		});
-
-		nextDay.addEventListener('click', this.nextDay.bind(this))
 	}
 
 
