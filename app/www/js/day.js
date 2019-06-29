@@ -1,3 +1,5 @@
+import Player from '/js/player.js'
+
 class Day {
     constructor() {
         this.date = new Date()
@@ -22,6 +24,12 @@ class Day {
             document.getElementById("date").innerHTML = date
             this.ref.set(this.date.toDateString())
         });
+
+        this.goWork()
+    }
+
+    goWork() {
+        Player.prototype.addCash(200)
     }
 }
 

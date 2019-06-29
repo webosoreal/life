@@ -1,5 +1,7 @@
 import Game from '../js/game.js'
 import Day from '../js/day.js'
+import Personality from '/js/personality.js'
+import Skills from '/js/skills.js'
 
 class GameList {
 	constructor(database) {
@@ -58,7 +60,12 @@ class GameList {
 	redirectUserToGame(res) {
 		if(res && res.game && res.game.personality) {
 			console.log('game already started | personality ok')
-			Game.prototype.setPage('home', this.lang)
+			if (res.game.skills) {
+				console.log('game already started | skills ok')
+				Game.prototype.setPage('home', this.lang) // nex step
+			} else {
+				Game.prototype.setPage('setSkills')
+			}	
 		} else {
 			new Game()
 		}
@@ -75,7 +82,7 @@ class GameList {
 
 		document.getElementById('nextDay').addEventListener('click', () => {Day.prototype.nextDay()})
 
-
+		
 		firebase.auth().onAuthStateChanged((user) => {
 			if(user) {
 				console.log(user)
@@ -85,6 +92,14 @@ class GameList {
 				ref.once('value').then((snapshot) => {
 					this.redirectUserToGame(snapshot.val())
 				});
+			}
+		})
+
+		document.addEventListener('changePage', (e)=> {
+			if(e.detail == 'createPlayer') {
+				new Personality()
+			} else if(e.detail == 'setSkills') {
+				new Skills()
 			}
 		})
 	}

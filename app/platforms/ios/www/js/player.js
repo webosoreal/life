@@ -5,29 +5,29 @@ import Skills from '/js/skills.js'
 class Player {
 	constructor () {
 		this.uid = firebase.auth().currentUser && firebase.auth().currentUser.uid
-		this.name = 'newPlayer'
 		this.money = 1000
-		this.work = 'Unemployed'
-		this.skills = {}
-		this.personality = {}
+		this.moneyRef = firebase.database().ref(this.uid + '/game/money')
+		this.moneyRef.set(this.money)
 
 		Game.prototype.setPage('createPlayer')
 		this.setEvents()
 	}
 
 	addCash(money) {
-		this.money += money
-		document.getElementById("money").innerHTML = this.money
+		this.refreshCash(money)
 	}
 
-	setEvents() {
-		document.addEventListener('changePage', (e)=> {
-			if(e.detail == 'createPlayer') {
-				new Personality()
-			} else if(e.detail == 'setSkills') {
-				new Skills()
-			}
-		})
+	refreshCash(money) {
+		this.uid = firebase.auth().currentUser && firebase.auth().currentUser.uid
+		this.moneyRef = firebase.database().ref(this.uid + '/game/money')
+		this.moneyRef.once('value').then((snapshot) => {
+		   this.money = snapshot.val()
+		   if(money) {
+				this.money += money
+				this.moneyRef.set(this.money)
+		   }
+		   document.getElementById("money").innerHTML = this.money
+        });
 	}
 }
 
