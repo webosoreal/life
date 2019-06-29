@@ -2,6 +2,7 @@ import Game from '../js/game.js'
 import Day from '../js/day.js'
 import Personality from '/js/personality.js'
 import Skills from '/js/skills.js'
+import Player from '/js/player.js'
 
 class GameList {
 	constructor(database) {
@@ -85,12 +86,13 @@ class GameList {
 		
 		firebase.auth().onAuthStateChanged((user) => {
 			if(user) {
-				console.log(user)
 				this.uid = user.uid
 				var ref = firebase.database().ref(this.uid);
 
 				ref.once('value').then((snapshot) => {
 					this.redirectUserToGame(snapshot.val())
+					Player.prototype.refreshCash()
+					Day.prototype.refreshDate()
 				});
 			}
 		})
