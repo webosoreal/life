@@ -1,5 +1,6 @@
 import Game from '/js/game.js'
 import Personality from '/js/personality.js'
+import Skills from '/js/skills.js'
 
 class Player {
 	constructor () {
@@ -23,6 +24,8 @@ class Player {
 		document.addEventListener('changePage', (e)=> {
 			if(e.detail == 'createPlayer') {
 				new Personality()
+			} else if(e.detail == 'setSkills') {
+				new Skills()
 			}
 		})
 	}

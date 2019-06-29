@@ -22,6 +22,8 @@ class Personality {
             this.personality.lazy = parseInt(document.querySelector('input[name="lazy"]').value)
             
             firebase.database().ref(this.uid + '/game/personality').set(this.personality)
+            firebase.database().ref(this.uid + '/game/name').set(this.name)
+            Game.prototype.setPage('setSkills')
 
 		} else {
 			//popup error
