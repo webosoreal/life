@@ -65,12 +65,19 @@ class GameList {
 			if (res.game.skills) {
 				console.log('game already started | skills ok')
 				Game.prototype.setPage('home', this.lang) // nex step
+				this.showGameMenu()
 			} else {
 				Game.prototype.setPage('setSkills')
 			}	
 		} else {
 			new Game()
 		}
+	}
+
+	showGameMenu() {
+		document.querySelector('.footer').classList.remove('hidden')
+		document.querySelector('.header').classList.remove('hidden')
+		document.getElementById('nextDay').classList.remove('hidden')
 	}
 
 	casualBkg() {

@@ -9,7 +9,7 @@
 	</head>
 	<body class="bkg1">
 		<div class="app">
-			<ul class="header">
+			<ul class="header hidden">
 				<li><span id="life"></span> <i class="fas fa-heartbeat"></i></li>
 				<li><span id="money"></span> <i class="fas fa-coins"></i></li>
 				<li id="date"></li>
@@ -22,7 +22,7 @@
 						<div href="" id="loadGame">Load Life</div>
 					</div>
 
-					<div class="loginGame hidden">
+					<div class="loginGame popup hidden">
 						<div class="field">
 							<p>Mail</p>
 							<input type="text" name="mail">
@@ -34,7 +34,7 @@
 						<button>Login</button>
 					</div>
 
-					<div class="signUp hidden">
+					<div class="signUp popup hidden">
 						<div class="field">
 							<p>Mail</p>
 							<input type="text" name="mail">
@@ -49,7 +49,7 @@
 					<div id="options">Options</div>
 				</div>
 			</div>
-			<ul class="footer">
+			<ul class="footer hidden">
 				<li id="home">Home <i class="fas fa-globe-africa"></i></li>
 				<li id="self">Me <i class="far fa-user"></i></li>
 				<li id="house">House <i class="fas fa-home"></i></li>
@@ -57,7 +57,7 @@
 				<li id="social">Social <i class="far fa-kiss-beam"></i></li>
 				<li id="city">City <i class="fas fa-city"></i></li>
 			</ul>
-			<button id="nextDay">Next Day</button>
+			<button id="nextDay" class="hidden">Next Day</button>
 		</div>
 		<script type="text/javascript" src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>

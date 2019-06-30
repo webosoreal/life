@@ -24,6 +24,7 @@ body {
     font-size: 12px;
     height: 100vh;
     overflow: hidden;
+    letter-spacing: 0.5px;
     background-size: cover !important;
 }
 
@@ -33,9 +34,14 @@ body {
     position: relative;
 }
 
-.app header {
+.app .header {
     width: 100%;
     height: 70px;
+    display: flex;
+}
+
+.app .header li {
+
 }
 
 .app .footer {
@@ -58,12 +64,31 @@ body {
     height: calc(100vh - 170px);
 }
 
-#createGame,
-#loadGame {
-    background: red;
-    display: block;
+#start .logo {
+    height: 100px;
+    background: rgba(255,255,255,0.5);
+    margin: 70px 50px;
+}
+
+#start #createGame, #start #loadGame, #start #options {
+    background: rgba(255,255,255, 0.5);
     width: 100%;
     height: 50px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.popup {
+    position: fixed;
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 60vh;
+    top: 20vh;
+    color: #fff;
 }
 
 #nextDay {
@@ -84,5 +109,18 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.field p {
+    margin-bottom: 5px;
+}
+
+.field input {
+    width: 100%;
 }
