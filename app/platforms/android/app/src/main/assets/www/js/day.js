@@ -1,4 +1,4 @@
-import Player from '/js/player.js'
+import Player from '../js/player.js'
 
 class Day {
     constructor() {

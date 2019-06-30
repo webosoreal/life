@@ -1,8 +1,8 @@
 import Game from '../js/game.js'
 import Day from '../js/day.js'
-import Personality from '/js/personality.js'
-import Skills from '/js/skills.js'
-import Player from '/js/player.js'
+import Personality from '../js/personality.js'
+import Skills from '../js/skills.js'
+import Player from '../js/player.js'
 
 class GameList {
 	constructor(database) {
@@ -82,6 +82,10 @@ class GameList {
 	}
 
 	setEvents() {
+		document.addEventListener('touch', (e) => {
+			e.target.trigger('click')
+		})
+
 		document.getElementById('createGame').addEventListener('click', () => {
 			this.newGame()
 		})
@@ -129,3 +133,4 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database()
 new GameList(database)
+

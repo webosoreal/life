@@ -1,6 +1,4 @@
-import Game from '/js/game.js'
-import Personality from '/js/personality.js'
-import Skills from '/js/skills.js'
+import Game from '../js/game.js'
 
 class Player {
 	constructor () {
