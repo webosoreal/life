@@ -13,6 +13,16 @@
     src: url('../fonts/ImperatorBronze.ttf');
 }
 
+@font-face {
+    font-family: 'ImperatorSmallCaps';
+    src: url('../fonts/ImperatorSmallCaps.ttf')
+}
+
+@font-face {
+    font-family: 'ImperatorSmallCapsBold';
+    src: url('../fonts/ImperatorSmallCaps\ Bold.ttf')
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -21,7 +31,7 @@
 }
 
 body {
-    font-size: 12px;
+    font-size: 14px;
     height: 100vh;
     overflow: hidden;
     letter-spacing: 0.5px;
@@ -31,7 +41,9 @@ body {
 .app {
     width: 100vw;
     height: 95vh;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .app .header {
@@ -79,7 +91,7 @@ body {
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
 .popup {
@@ -89,6 +101,7 @@ body {
     height: 60vh;
     top: 20vh;
     color: #fff;
+    padding: 40px;
 }
 
 #nextDay {
@@ -96,7 +109,7 @@ body {
     bottom: 0;
     left: 10%;
     height: 50px;
-    font-size: 1.5em;
+    font-size: 1.4em;
     text-transform: uppercase;
     background: #FE4900;
     color: #111;
@@ -106,6 +119,7 @@ body {
     border-right: none;
     font-weight: bold;
     letter-spacing: 2px;
+    font-family: ImperatorSmallCapsBold;
 }
 
 .hidden {
@@ -123,4 +137,20 @@ body {
 
 .field input {
     width: 100%;
+}
+
+button, button:hover, button:focus, button:active {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    background: #111;
+    border: 0;
+    color: #fff;
+    font-family: ImperatorSmallCapsBold;
+    font-weight: 700;
+}
+
+.btn-white, .btn-white:hover, .btn-white:focus, .btn-white:active {
+    background: white;
+    color: #111;
 }

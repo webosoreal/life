@@ -3,6 +3,7 @@ import Day from '../js/day.js'
 import Personality from '../js/personality.js'
 import Skills from '../js/skills.js'
 import Player from '../js/player.js'
+import Utils from '../js/utils.js'
 
 class GameList {
 	constructor(database) {
@@ -15,10 +16,12 @@ class GameList {
 	}
 
 	newGame() {
+		firebase.auth().signOut()
+		var button = this.tabNew.querySelector('button')
+
+		Utils.prototype.attachClosePopup(this.tabNew)
 		this.tabNew.classList.remove('hidden')
 		this.tabLoad.classList.add('hidden')
-		var button = this.tabNew.querySelector('button')
-		firebase.auth().signOut()
 
 		button.addEventListener('click', ()=> {
 			var mail = document.querySelector('.signUp input[name="mail"]').value
@@ -43,9 +46,11 @@ class GameList {
 	}
 
 	loadGame() {
+		var button = this.tabLoad.querySelector('button')
+
 		this.tabLoad.classList.remove('hidden')
 		this.tabNew.classList.add('hidden')
-		var button = this.tabLoad.querySelector('button')
+		Utils.prototype.attachClosePopup(this.tabLoad)
 
 		button.addEventListener('click', ()=> {
 			var mail = document.querySelector('.loginGame input[name="mail"]').value
