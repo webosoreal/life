@@ -11,6 +11,7 @@ class GameList {
 		this.tabLoad = document.querySelector('.loginGame')
 
 		this.setEvents()
+		this.casualBkg()
 	}
 
 	newGame() {
@@ -70,6 +71,14 @@ class GameList {
 		} else {
 			new Game()
 		}
+	}
+
+	casualBkg() {
+		var min = 1;
+		var max = 3;
+		var casual = Math.floor(Math.random() * (+max - +min)) + +min; 
+		var bkgUrl = 'url("/img/bkg' + casual + '.jpg")'
+		document.body.style.background = bkgUrl
 	}
 
 	setEvents() {
